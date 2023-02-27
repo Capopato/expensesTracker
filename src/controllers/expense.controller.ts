@@ -3,12 +3,14 @@ import Expense from "../models/expense.model";
 import mongoose from "mongoose";
 
 export const createExpense = async (req: Request, res: Response, next: NextFunction) => {
+  const user = req.body.user;
   const title = req.body.title;
   const amount = req.body.amount;
   const description = req.body.description;
 
   const expense = new Expense({
     id: new mongoose.Types.ObjectId(),
+    user,
     title,
     amount,
     description,

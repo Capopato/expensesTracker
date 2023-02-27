@@ -1,7 +1,8 @@
 import { z } from "zod";
 import { Request, Response, NextFunction } from "express";
+import User from "../models/user.model";
 
-export const validateExpense = (req: Request, res: Response, next: NextFunction) => {
+export const validateExpense = async (req: Request, res: Response, next: NextFunction) => {
   try {
     validateExpenseSchema.parse(req.body);
     next();
@@ -16,6 +17,7 @@ export const validateExpense = (req: Request, res: Response, next: NextFunction)
 };
 
 const validateExpenseSchema = z.object({
+  user: z.string().refine(async (val) => await User.find({ username: val })),
   title: z.string().min(1).max(25),
   amount: z.number().min(0),
   description: z.string().min(0).max(150),
