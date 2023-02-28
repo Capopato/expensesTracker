@@ -41,19 +41,27 @@ userSchema.pre("save", function (next) {
   }
 });
 
-// userSchema.pre<userModel>("save", async function (next) {
-//   let user = this as userModel;
+userSchema.pre<userModel>("save", async function (next) {
+  let user = this as userModel;
 
-//   if (!user.isModified("password")) {
-//     return next();
-//   }
+  if (!user.isModified("password")) {
+    return next();
+  }
 
-//   const salt = await bcrypt.genSalt(10);
-//   const hashPassword = bcrypt.hashSync(user.password, salt);
-//   user.password = hashPassword;
-//   user.passwordCheck = hashPassword;
-//   //   user.passwordCheck = bcrypt.hashSync(user.password, salt);
-//   return next();
-// });
+  const salt = await bcrypt.genSalt(10);
+  const hashPassword = bcrypt.hashSync(user.password, salt);
+  user.password = hashPassword;
+  user.passwordCheck = hashPassword;
+  return next();
+});
+
+userSchema.methods.comparePassword = async function (password: string) {
+  const user = this as userModel;
+  try {
+    return bcrypt.compare(password, user.password);
+  } catch (error) {
+    return error;
+  }
+};
 
 export default mongoose.model<userModel>("User", userSchema);

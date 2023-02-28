@@ -13,6 +13,8 @@ import mongoose from "mongoose";
 import config from "./config/config";
 import userRouter from "./routes/user.routes";
 import expenseRoutes from "./routes/expense.routes";
+import sessionRoutes from "./routes/session.routes";
+import { deserializeUser } from "./middleware/deserializeUser.middleware";
 
 const app = express();
 
@@ -32,6 +34,8 @@ mongoose
 const startServer = () => {
   app.use(express.json());
   app.use(urlencoded({ extended: true }));
+  // app.use(deserializeUser);
+  app.use("/session", sessionRoutes);
   app.use("/user", userRouter);
   app.use("/expense", expenseRoutes);
 
