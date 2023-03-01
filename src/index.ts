@@ -14,7 +14,8 @@ import config from "./config/config";
 import userRouter from "./routes/user.routes";
 import expenseRoutes from "./routes/expense.routes";
 import sessionRoutes from "./routes/session.routes";
-import { deserializeUser } from "./middleware/deserializeUser.middleware";
+import { deserializeUser } from "./middleware/session/deserializeUser.middleware";
+import currencyRoutes from "./routes/currency.routes";
 
 const app = express();
 
@@ -38,6 +39,7 @@ const startServer = () => {
   app.use("/session", sessionRoutes);
   app.use("/user", userRouter);
   app.use("/expense", expenseRoutes);
+  app.use("/currency", currencyRoutes);
 
   app.listen(config.port, () => console.log(`Port is running at: ${config.port}`));
 };

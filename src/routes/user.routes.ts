@@ -1,7 +1,7 @@
 import express from "express";
 import { createUser, deleteAllUsers, deleteUser, readAllUsers, readUser, updateUser } from "../controllers/user.controller";
-import { validateUser } from "../middleware/validateUser.middleware";
-import { requireUser } from "../middleware/requireUser.middleware";
+import { validateUser } from "../middleware/expense/validateUser.middleware";
+import { requireUser } from "../middleware/session/requireUser.middleware";
 
 const userRouter = express.Router();
 

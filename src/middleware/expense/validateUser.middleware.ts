@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 
 export const validateUser = (req: Request, res: Response, next: NextFunction) => {
   try {
-    validateUserSchema.parse(req.body);
+    validateUserSchema.parseAsync(req.body);
     next();
   } catch (error) {
     if (error instanceof z.ZodError) {

@@ -10,6 +10,22 @@ const accessTokenLT = process.env.accessTokenLT || "";
 const refreshTokenLT = process.env.refreshTokenLT || "";
 const publicKey = process.env.publicKey || "";
 const privateKey = process.env.privateKey || "";
+const header = {
+  headers: {
+    apikey: process.env.fetchAccessToken,
+  },
+};
+const currencies = {
+  AustralianDollar: "AUD",
+  Real: "BRL",
+  Lev: "BGN",
+  CanadianDollar: "CAD",
+  Pound: "GBP",
+  Dollar: "USD",
+  Euro: "EUR",
+  Yuan: "CNH",
+  JapaneseYen: "JPY",
+};
 
 export default {
   mongoUsername,
@@ -20,4 +36,6 @@ export default {
   refreshTokenLT,
   publicKey,
   privateKey,
+  header,
+  currencies,
 };

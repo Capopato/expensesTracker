@@ -6,6 +6,7 @@ export const createExpense = async (req: Request, res: Response, next: NextFunct
   const user = req.body.user;
   const title = req.body.title;
   const amount = req.body.amount;
+  const currency = req.body.currency;
   const description = req.body.description;
 
   const expense = new Expense({
@@ -13,6 +14,7 @@ export const createExpense = async (req: Request, res: Response, next: NextFunct
     user,
     title,
     amount,
+    currency,
     description,
   });
 
@@ -20,9 +22,11 @@ export const createExpense = async (req: Request, res: Response, next: NextFunct
     expense.save();
     res.status(200).json({ expense });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error });
   }
 };
+
 export const updateExpense = async (req: Request, res: Response, next: NextFunction) => {
   const id = req.params.expenseId;
   const update = req.body;

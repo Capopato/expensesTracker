@@ -6,6 +6,7 @@ export interface expenseModel extends Document {
   user: string;
   title: string;
   amount: number;
+  currency: string;
   description: string;
 }
 
@@ -14,6 +15,7 @@ export const expenseSchema: Schema = new Schema(
     user: { type: String },
     category: { type: String },
     amount: { type: Number },
+    currency: { type: String },
     description: { type: String },
   },
   {

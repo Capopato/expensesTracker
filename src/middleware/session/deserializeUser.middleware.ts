@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { verifyJWT } from "../utils/jwt.utils";
-import { get } from "lodash"; // Use the function to get a property when it is uncertain if the property exists.
+import { verifyJWT } from "../../utils/jwt.utils";
 
 export const deserializeUser = async (req: Request, res: Response, next: NextFunction) => {
   let accessToken = "";

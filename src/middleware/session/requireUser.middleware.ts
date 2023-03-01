@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import User from "../models/user.model";
-import Session from "../models/session.model";
+import User from "../../models/user.model";
+import Session from "../../models/session.model";
 
 export const requireUser = async (req: Request, res: Response, next: NextFunction) => {
   const user = await User.find(req.body.username);

@@ -2,8 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import User from "../models/user.model";
 import { signJWT } from "../utils/jwt.utils";
 import config from "../config/config";
-import { createSession } from "../middleware/session.middleware";
-import { deserializeUser } from "../middleware/deserializeUser.middleware";
+import { createSession } from "../middleware/session/session.middleware";
+import { deserializeUser } from "../middleware/session/deserializeUser.middleware";
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
   const input = req.body;
